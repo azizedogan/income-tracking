@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useEffect } from "react";
 import { useAuth } from "@/context/AuthContext";
 import { auth, db } from "@/firebaseConfig";
@@ -45,6 +47,25 @@ function Hesap() {
     setUserData({ ...userData, [e.target.name]: e.target.value });
   };
 
+  const mapFirebaseError = (errorCode) => {
+    switch (errorCode) {
+      case "auth/invalid-credential":
+        return "Mevcut şifreniz hatalı. Lütfen tekrar deneyin.";
+      case "auth/weak-password":
+        return "Yeni şifreniz çok zayıf. Lütfen en az 6 karakterden oluşan bir şifre belirleyin.";
+      case "auth/email-already-in-use":
+        return "Bu e-posta adresi zaten kullanımda. Lütfen farklı bir e-posta deneyin.";
+      case "auth/requires-recent-login":
+        return "Güvenlik nedeniyle şifrenizi değiştirmek için tekrar giriş yapmanız gerekmektedir.";
+      case "auth/user-not-found":
+        return "Kullanıcı bulunamadı. Lütfen tekrar giriş yapın.";
+      case "auth/network-request-failed":
+        return "İnternet bağlantınızı kontrol edin ve tekrar deneyin.";
+      default:
+        return "Bilinmeyen bir hata oluştu. Lütfen tekrar deneyin.";
+    }
+  };  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -78,7 +99,8 @@ function Hesap() {
       setSuccess(true);
       setTimeout(() => setSuccess(false), 3000);
     } catch (error) {
-        setError(error.message || "Bilgiler güncellenirken bir hata oluştu.");
+      const errorMessage = mapFirebaseError(error.code);
+      setError(errorMessage || "Bilgiler güncellenirken bir hata oluştu.");
     }
   };
 
@@ -87,60 +109,63 @@ function Hesap() {
   return (
     <>
       <Head>
-        <title>Hesap / GElir-Gider Takip</title>
+        <title>Hesap / Gelir-Gider Takip</title>
       </Head>
-      <div className="fixed inset-0 flex items-center justify-center">
-        <div className="max-w-lg mx-auto p-6 bg-white dark:bg-gray-800 shadow-md rounded-md mt-10 w-full sm:w-96">
-          <h2 className="text-xl font-semibold text-center mb-4 text-gray-800 dark:text-white">Hesap Bilgileri</h2>
+      <div className="container mx-auto pt-5 px-6 fixed left-[200px]">
+        <div className="flex items-center justify-center">
+          <div className="w-full max-w-sm sm:max-w-md md:max-w-lg mx-auto p-4 sm:p-6 bg-white dark:bg-gray-800 shadow-md rounded-md mt-6 sm:mt-10">
+            <h2 className="text-lg sm:text-xl font-semibold text-center mb-4 text-gray-800 dark:text-white">Hesap Bilgileri</h2>
 
-          {success && <p className="text-green-500 text-center">Bilgiler Güncellendi!</p>}
-          {error && <p className="text-red-500 text-center">{error}</p>}
+            {success && <p className="text-green-500 text-center">Bilgiler Güncellendi!</p>}
+            {error && <p className="text-red-500 text-center">{error}</p>}
 
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">E-Posta</label>
-              <input
-                type="email"
-                name="email"
-                value={userData.email}
-                readOnly
-                className="w-full px-4 py-2 border rounded-md bg-gray-200 dark:bg-gray-700 dark:text-white dark:border-gray-600"
-              />
-              <p className="text-sm text-gray-500 dark:text-gray-400">E-Posta adresiniz değiştirilemez.</p>
-            </div>
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">E-Posta</label>
+                <input
+                  type="email"
+                  name="email"
+                  value={userData.email}
+                  readOnly
+                  className="w-full px-4 py-2 border rounded-md bg-gray-200 dark:bg-gray-700 dark:text-white dark:border-gray-600"
+                />
+                <p className="text-sm text-gray-500 dark:text-gray-400">E-Posta adresiniz değiştirilemez.</p>
+              </div>
 
-            <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Mevcut Şifre</label>
-              <input
-                type="password"
-                name="currentPassword"
-                value={userData.currentPassword}
-                onChange={handleChange}
-                className="w-full px-4 py-2 border rounded-md dark:bg-gray-700 dark:text-white dark:border-gray-600"
-                required
-              />
-            </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Mevcut Şifre</label>
+                <input
+                  type="password"
+                  name="currentPassword"
+                  value={userData.currentPassword}
+                  onChange={handleChange}
+                  className="w-full px-4 py-2 border rounded-md dark:bg-gray-700 dark:text-white dark:border-gray-600"
+                  required
+                />
+              </div>
 
-            <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Yeni Şifre</label>
-              <input
-                type="password"
-                name="newPassword"
-                value={userData.newPassword}
-                onChange={handleChange}
-                className="w-full px-4 py-2 border rounded-md dark:bg-gray-700 dark:text-white dark:border-gray-600"
-              />
-            </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Yeni Şifre</label>
+                <input
+                  type="password"
+                  name="newPassword"
+                  value={userData.newPassword}
+                  onChange={handleChange}
+                  className="w-full px-4 py-2 border rounded-md dark:bg-gray-700 dark:text-white dark:border-gray-600"
+                />
+              </div>
 
-            <button
-              type="submit"
-              className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700"
-            >
-              Güncelle
-            </button>
-          </form>
+              <button
+                type="submit"
+                className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700"
+              >
+                Güncelle
+              </button>
+            </form>
+          </div>
         </div>
       </div>
+
   </>
 );
 }

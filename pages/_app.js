@@ -1,3 +1,5 @@
+"use client";
+
 import Navbar from "@/components/Navbar";
 import Sidebar from "@/components/Sidebar";
 import { AuthProvider, useAuth } from "@/context/AuthContext";
@@ -39,7 +41,7 @@ export default function App({ Component, pageProps }) {
             <div className="relative">
             <Sidebar />
 
-              <div className="absolute left-72 top-32 me-6">
+              <div className="w-full container mt-36 me-1">
                 <AuthPopupWrapper>
                   <Component {...pageProps} />
                 </AuthPopupWrapper>

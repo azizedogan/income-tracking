@@ -1,3 +1,5 @@
+"use client";
+
 import { useTransaction } from "@/context/TransactionContext";
 import { HiArrowTrendingDown, HiArrowTrendingUp, HiOutlineCircleStack } from "react-icons/hi2";
 import Stat from "./Stat";

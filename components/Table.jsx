@@ -1,3 +1,5 @@
+"use client";
+
 import { db } from "@/firebaseConfig";
 import { collection, deleteDoc, doc, getDocs } from "firebase/firestore";
 import { useState, useEffect } from "react";
@@ -66,7 +68,7 @@ function Table({onEdit, menuOpen, setMenuOpen, data}) {
     return (
         <>
             {transactions.length > 0 ? (
-                <div className="w-[1300px] mx-auto border border-gray-300 rounded-lg p-4 shadow-lg dark:border-gray-800">
+                <div className="w-[1100px] ml-36 border border-gray-300 rounded-lg p-4 shadow-lg dark:border-gray-800">
                     <div className="hidden md:flex bg-gray-100 dark:bg-gray-900 px-4 py-2 rounded-lg">
                         <div className="flex-1 text-left font-semibold text-gray-600 dark:text-gray-200">
                             Tarih
@@ -120,7 +122,7 @@ function Table({onEdit, menuOpen, setMenuOpen, data}) {
 
                                 <div className="w-8 text-center relative">
                                     <button
-                                        className="p-2 text-gray-600 hover:text-gray-800"
+                                        className="p-2 text-gray-400 hover:text-gray-200"
                                         onClick={() => handleMenuToggle(transaction.id)}
                                     >
                                         <HiEllipsisHorizontal size={24} />
@@ -139,24 +141,26 @@ function Table({onEdit, menuOpen, setMenuOpen, data}) {
                     </div>
                 </div>
             ) : (
-                <div className="text-center mt-8">
-                    <p 
-                        className="text-3xl text-gray-600 mb-8"
-                    >
-                        Siz de verilerinizi eklemeye başlayın!
-                    </p>
-                    <Link 
-                        href="/gelir" 
-                        className="mr-4 px-4 py-4 bg-green-200 text-black text-2xl rounded-lg hover:bg-green-300"
-                    >
-                        Gelir Ekleyin
-                    </Link>
-                    <Link 
-                        href="/gider" 
-                        className="px-4 py-4 bg-red-200 text-black text-2xl rounded-lg hover:bg-red-300"
-                    >
-                        Gider Ekleyin
-                    </Link>
+                <div className="container mx-auto fixed left-[150px]">
+                    <div className="text-center mt-8">
+                        <p 
+                            className="text-3xl text-gray-600 mb-8"
+                        >
+                            Siz de verilerinizi eklemeye başlayın!
+                        </p>
+                        <Link 
+                            href="/gelir" 
+                            className="mr-4 px-4 py-4 bg-green-200 text-black text-2xl rounded-lg hover:bg-green-300"
+                        >
+                            Gelir Ekleyin
+                        </Link>
+                        <Link 
+                            href="/gider" 
+                            className="px-4 py-4 bg-red-200 text-black text-2xl rounded-lg hover:bg-red-300"
+                        >
+                            Gider Ekleyin
+                        </Link>
+                    </div>
                 </div>
             )}
         </>

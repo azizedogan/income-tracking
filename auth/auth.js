@@ -9,6 +9,7 @@ import {
 } from "firebase/auth";
 import { auth, db } from "@/firebaseConfig"; 
 import { doc, setDoc, getDoc} from "firebase/firestore";
+import { useRouter } from "next/router";
 
 const saveUserToFirestore = async(user) => {
     if(!user) return;
@@ -58,9 +59,13 @@ export const login = async (email, password) => {
 };
 
 export const logout = async () => {
+    const router = useRouter();
+
     try {
         await new Promise((resolve) => setTimeout(resolve, 3000));
         await signOut(auth);
+        
+        router.push("/");
     } catch (error) {
         throw error;
     }

@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import { useState } from "react";
 import { 
@@ -9,8 +11,8 @@ import {
 
 function Sidebar() {
     return (
-        <aside className="bg-white text-black w-64 h-screen mt-28 border-r pt-24 fixed top-0 left-0 z-1 dark:bg-gray-800 dark:text-white dark:border-gray-900">
-            <ul className="flex flex-col gap-12 text-xl ps-14">
+        <aside className="bg-white text-black w-48 h-screen mt-24 border-r pt-24 fixed top-0 left-0 z-1 dark:bg-gray-800 dark:text-white dark:border-gray-900">
+            <ul className="flex flex-col gap-12 text-xl ps-8">
                 <li className="flex items-center gap-3">
                     <HiOutlineHome size={25} />
                     <Link href="/">Anasayfa</Link>

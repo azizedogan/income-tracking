@@ -1,3 +1,5 @@
+"use client";
+
 import { signup, login, signInWithGoogle } from "@/auth/auth";
 import { useState } from "react";
 

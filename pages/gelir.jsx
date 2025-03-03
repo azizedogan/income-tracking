@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from "react";
 import { db } from "@/firebaseConfig";
 import { collection, addDoc } from "firebase/firestore";
@@ -53,9 +55,7 @@ function Gelir() {
                 <title>Gelir / Gelir-Gider Takiip</title>
             </Head>
 
-            <div className="fixed left-1/2 transform -translate-x-1/2 top-20 sm:top-24 md:top-28 
-            bg-gray-100 dark:bg-gray-800 rounded-lg p-4 sm:p-5 shadow-lg 
-            w-[95%] sm:w-[90%] md:w-[80%] max-w-[600px]">
+            <div className="w-[40%] container rounded-lg shadow-lg p-4 mb-5">
                 <div>
                     <h2 className="text-2xl font-semibold text-gray-800 dark:text-gray-200">
                         Gelir Ekleme Formu
@@ -118,7 +118,7 @@ function Gelir() {
                         <textarea 
                             name="description" 
                             cols="30" 
-                            rows="3" 
+                            rows="2" 
                             className="w-full pl-3 pr-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-200" 
                             placeholder="İsteğe Bağlı"
                             value={description}
@@ -147,7 +147,8 @@ function Gelir() {
                         </button>
                     </div>
                 </form>
-            </div>
+            </div> 
+
         </>
 
     );

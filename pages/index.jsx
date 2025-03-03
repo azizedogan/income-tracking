@@ -1,3 +1,5 @@
+"use Client";
+
 import { useEffect, useState } from "react";
 import { db } from "@/firebaseConfig";
 import { collection, getDocs } from "firebase/firestore";
@@ -58,14 +60,12 @@ export default function Home() {
   }, [user]);
 
   return (
-    <main className="container w-full">
-      <div className="flex flex-wrap justify-between">
-        <div className="w-full flex justify-evenly items-center mb-28">
+    <main className="w-[80%] container ml-48">
+        <div className="flex justify-evenly items-center shadow-md mb-16 py-1">
           <Stats />
         </div>
 
         <LineChartComponent data={data} />
-      </div>
     </main>
   );
 }

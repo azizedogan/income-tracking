@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import { db } from "@/firebaseConfig";
 import { doc, updateDoc } from "firebase/firestore";

@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useState } from "react";
 import { useTransaction } from "@/context/TransactionContext";
 import Table from "@/components/Table";
@@ -40,9 +42,9 @@ function SonIslemler() {
             <Head>
                 <title>Son İşlemler / Gelir-Gider Takip</title>
             </Head>
-            <div className="container mx-auto pt-5 px-6">
-                <div className="flex items-start justify-between">
-                    <h2 className="text-3xl font-semibold mb-8">Son İşlemler</h2>      
+            <div className="container mx-auto mb-5">
+                <div className="w-[86%] ml-36 mb-4 flex items-center justify-between shadow-md">
+                    <h2 className="text-3xl font-semibold mb-5 px-5">Son İşlemler</h2>      
                     <Filter data={transactions} onFilter={handleFilter} />
                 </div>
 

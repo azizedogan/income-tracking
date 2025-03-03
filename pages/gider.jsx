@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from "react";
 import { db } from "@/firebaseConfig";
 import { collection, addDoc } from "firebase/firestore";
@@ -52,9 +54,7 @@ function Gider() {
                 <title>Gider / Gelir-Gider Takiip</title>
             </Head>
 
-            <div className="fixed left-1/2 transform -translate-x-1/2 top-20 sm:top-24 md:top-28 
-            bg-gray-100 dark:bg-gray-800 rounded-lg p-4 sm:p-5 shadow-lg 
-            w-[95%] sm:w-[90%] md:w-[80%] max-w-[600px]">
+            <div className="w-[40%] container rounded-lg shadow-lg p-4 mb-5">
                 <div>
                     <h2 className="text-2xl font-semibold text-gray-800 dark:text-gray-200">
                         Gider Ekleme Formu
@@ -63,7 +63,7 @@ function Gider() {
 
                 <form className="py-8 px-6 sm:px-12 text-lg space-y-4" onSubmit={handleSubmit}>
                     <div className="space-y-1">
-                        <label>Gider Miktarı</label>
+                        <label className="block text-gray-700 dark:text-gray-300">Gider Miktarı</label>
                         <input
                             type="number"
                             name="amount"
@@ -76,7 +76,7 @@ function Gider() {
                     </div>
 
                     <div className="space-y-1">
-                        <label>Kategori</label>
+                        <label className="block text-gray-700 dark:text-gray-300">Kategori</label>
                         <select 
                             name="category" 
                             required 
@@ -117,7 +117,7 @@ function Gider() {
                     </div>
 
                     <div className="space-y-1">
-                        <label>Ödeme Şekli</label>
+                        <label className="block text-gray-700 dark:text-gray-300">Ödeme Şekli</label>
                         <select 
                             name="paymentType" 
                             required 
@@ -134,7 +134,7 @@ function Gider() {
                     </div>
 
                     <div className="space-y-1">
-                        <label>Açıklama</label>
+                        <label className="block text-gray-700 dark:text-gray-300">Açıklama</label>
                         <textarea 
                             name="description" 
                             cols="30" 
@@ -147,7 +147,7 @@ function Gider() {
                     </div>
 
                     <div className="space-y-1">
-                        <label>Tarih Seçin</label>
+                        <label className="block text-gray-700 dark:text-gray-300">Tarih Seçin</label>
                         <input 
                             type="date" 
                             name="date"

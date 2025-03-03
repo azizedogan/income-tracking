@@ -1,3 +1,5 @@
+"use server";
+
 function Filter({data, onFilter}) {
     const handleFilterChange = (filterType) => {
      let filtered = [...data];
@@ -19,7 +21,7 @@ function Filter({data, onFilter}) {
         <div className="mb-4">
             <select  
                 onChange={(e) => handleFilterChange(e.target.value)} 
-                className="px-4 p-2 border rounded-md bg-white text-gray-800 border-gray-300 dark:bg-gray-800 dark:text-gray-200 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="mx-9 px-4 p-2 border rounded-md bg-white text-gray-800 border-gray-300 dark:bg-gray-800 dark:text-gray-200 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
                 <option value="">Seçim Yapınız</option>
                 <option value="newToOld">Tarihe Göre(Yeni - Eski)</option>
